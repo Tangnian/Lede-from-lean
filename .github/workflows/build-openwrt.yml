@@ -54,6 +54,7 @@ jobs:
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-1804)
+        sudo -E apt-get -qq install python perl imagemagick subversion git gcc g++ binutils autoconf automake libtool-bin make bzip2 libncurses5-dev libreadline-dev zlib1g-dev flex bison patch texinfo tofrodos gettext pkg-config libstring-crc32-perl gawk libusb-dev unzip intltool libacl1-dev libcap-dev libc6-dev libglib2.0-dev wget curl zip libssl-dev build-essential asciidoc libz-dev python3 python2.7 lib32gcc1 libc6-dev-i386 uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp xmlto qemu-utils upx libelf-dev autopoint device-tree-compiler g++-multilib antlr3 gperf swig rsync
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -66,6 +67,7 @@ jobs:
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd package && git clone https://github.com/jefferymvp/luci-app-koolproxyR
 
     - name: Load custom feeds
       run: |
